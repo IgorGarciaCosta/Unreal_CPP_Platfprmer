@@ -13,5 +13,20 @@ UCLASS()
 class PLATFORMER_API APlatformer2DCharacter : public APaperCharacter
 {
 	GENERATED_BODY()
+
+	APlatformer2DCharacter();
+
+public:
+	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UCameraComponent* CameraComp;
 	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class USceneComponent* SceneComp;
 };
