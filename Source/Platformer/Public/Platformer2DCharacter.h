@@ -25,15 +25,19 @@ class PLATFORMER_API APlatformer2DCharacter : public APaperCharacter
 public:
 	virtual void BeginPlay() override;
 
+	virtual void Jump() override;
+
+	virtual void Landed(const FHitResult& Hit) override;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USpringArmComponent* SpringArmComp;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere)
 	class UCameraComponent* CameraComp;
 	
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere)
 	class USceneComponent* SceneComp;
 
 #pragma region INPUT
@@ -56,4 +60,8 @@ public:
 	void EnhancedMove(const FInputActionValue& Value);
 	void EnhancedJump(const FInputActionValue& Value);
 #pragma endregion INPUT
+
+private:
+	UPROPERTY(VisibleAnywhere)
+	class UCharacterGameComponent* CharacterGameComponent;
 };
