@@ -4,8 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
+#include "InputActionValue.h"
+#include "PaperFlipbookComponent.h"
+#include "PaperFlipbook.h"
 #include "Platformer2DCharacter.generated.h"
 
+
+class UInputAction;
+class UInputMappingContext;
 /**
  * 
  */
@@ -29,4 +35,25 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class USceneComponent* SceneComp;
+
+#pragma region INPUT
+
+protected:
+	UPROPERTY(EditDefaultsOnly)
+	UInputAction* MoveAction;
+
+	UPROPERTY(EditDefaultsOnly)
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditDefaultsOnly)
+	UInputMappingContext* InputMappingContext;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 InputMappingPriority = 0;
+
+
+public:
+	void EnhancedMove(const FInputActionValue& Value);
+	void EnhancedJump(const FInputActionValue& Value);
+#pragma endregion INPUT
 };

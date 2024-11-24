@@ -21,3 +21,11 @@ void APlatformer2DCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+void APlatformer2DCharacter::EnhancedMove(const FInputActionValue& Value)
+{
+}
+
+void APlatformer2DCharacter::EnhancedJump(const FInputActionValue& Value)
+{
+}
