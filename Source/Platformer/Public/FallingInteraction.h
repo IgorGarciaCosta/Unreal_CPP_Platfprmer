@@ -16,7 +16,7 @@ class PLATFORMER_API AFallingInteraction : public AParentActorInteraction
 
 	AFallingInteraction();
 
-private:
+protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere)
@@ -48,6 +48,8 @@ private:
 	FVector StartLocation;
 
 	FTimerHandle TimerHandle;
+
+	bool ALreadyOnFall;
 
 public:
 	UFUNCTION(BlueprintCallable)

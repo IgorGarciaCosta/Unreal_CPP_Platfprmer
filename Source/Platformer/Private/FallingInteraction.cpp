@@ -28,7 +28,8 @@ void AFallingInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, A
 {
 	if (PlayerChar == nullptr) return;
 
-	if (OtherActor == PlayerChar) {
+	if (OtherActor == PlayerChar && !ALreadyOnFall) {
+		ALreadyOnFall = true;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFallingInteraction::OnFall, DropDelay, false);
 
 	}
@@ -59,4 +60,5 @@ void AFallingInteraction::OnReset()
 	if (bRespawn) {
 		GetWorld()->SpawnActor<AFallingInteraction>(FallingInteractionClass, StartLocation, GetActorRotation());
 	}
+	ALreadyOnFall = false;
 }
