@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "PaperFlipbookComponent.h"
 #include "PaperFlipbook.h"
+#include "AnimationComponent.h"
 #include "Platformer2DCharacter.generated.h"
 
 
@@ -68,4 +69,7 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere)
 	class UCharacterGameComponent* CharacterGameComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	UAnimationComponent* AnimComp;
 };

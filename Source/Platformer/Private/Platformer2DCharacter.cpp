@@ -20,6 +20,8 @@ APlatformer2DCharacter::APlatformer2DCharacter()
 	SceneComp->SetupAttachment(RootComponent);
 
 	CharacterGameComponent = CreateDefaultSubobject<UCharacterGameComponent>(TEXT("CharacterGameComponent"));
+
+	AnimComp = CreateDefaultSubobject<UAnimationComponent>(TEXT("AnimComp"));
 }
 
 void APlatformer2DCharacter::BeginPlay()
