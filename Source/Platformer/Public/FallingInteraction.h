@@ -38,7 +38,10 @@ private:
 	float RespawnDelay = 2.f;
 
 	//determine if the platform is destroyied after falling
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction")
 	bool bDestroy = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction")
 
 	bool bRespawn = true;
 
