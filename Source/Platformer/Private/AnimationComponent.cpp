@@ -5,6 +5,7 @@
 #include "Platformer2DCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/CharacterMovementComponent.h" // Include for UCharacterMovementComponent
+#include <CharacterGameComponent.h>
 
 
 // Sets default values for this component's properties
@@ -38,6 +39,107 @@ void UAnimationComponent::UpdateControlRotation()
 	}
 }
 
+void UAnimationComponent::AnimationStateMachine()
+{
+	DeathAnimation();
+	AttackAnimation();
+	JumpAnimation();
+	RunAnimation();
+}
+
+bool UAnimationComponent::RunAnimation()
+{
+	if (CurChar) {
+		float Velocity = CurChar->GetCharacterMovement()->Velocity.Length();
+		bool bFalling = CurChar->GetCharacterMovement()->IsFalling();
+
+		if (Velocity > 0 && !bFalling && !AttackAnimation()) {
+			CharState = ECharacterState::Run;
+			return true;
+		}
+		if (Velocity == 0) {
+			CharState = ECharacterState::Idle;
+		}
+	
+	}
+	return false;
+}
+
+bool UAnimationComponent::JumpAnimation()
+{
+	if (CurChar) {
+		if (UCharacterGameComponent* CharacterGameComponent = ComponentOwner->FindComponentByClass<UCharacterGameComponent>()) {
+			if (CharacterGameComponent->GetJumping()) {
+				CharState = ECharacterState::Jump;
+				return true;
+			}
+			if (CurChar->GetCharacterMovement()->IsFalling()) {
+				CharState = ECharacterState::Fall;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+bool UAnimationComponent::AttackAnimation()
+{
+	return false;
+}
+
+bool UAnimationComponent::DeathAnimation()
+{
+	return false;
+}
+
+void UAnimationComponent::UpdateAnimation()
+{
+	if (CurChar == nullptr) return;
+
+	switch (CharState)
+	{
+	case Idle:
+		if (IdleFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(IdleFlipbook);
+			CurChar->GetSprite()->SetLooping(true);
+		}
+		break;
+	case Run:
+		if (RunFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(RunFlipbook);
+			CurChar->GetSprite()->SetLooping(true);
+		}
+		break;
+	case Jump:
+		if (JumpFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(JumpFlipbook);
+			CurChar->GetSprite()->SetLooping(true);
+		}
+		break;
+	case Attack:
+		if (AttackFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(AttackFlipbook);
+			CurChar->GetSprite()->SetLooping(false);
+		}
+		break;
+	case Fall:
+		if (FallFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(FallFlipbook);
+			CurChar->GetSprite()->SetLooping(true);
+		}
+		break;
+	case Dead:
+		if (DeathFlipbook) {
+			CurChar->GetSprite()->SetFlipbook(DeathFlipbook);
+			CurChar->GetSprite()->SetLooping(false);
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 
 // Called when the game starts
 void UAnimationComponent::BeginPlay()
@@ -57,5 +159,8 @@ void UAnimationComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	UpdateControlRotation();
+
+	AnimationStateMachine();
+	UpdateAnimation();
 }
 

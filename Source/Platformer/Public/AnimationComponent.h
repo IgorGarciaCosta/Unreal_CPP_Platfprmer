@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "PaperFlipbook.h"
 #include "AnimationComponent.generated.h"
 
 
@@ -28,6 +29,14 @@ public:
 
 	void UpdateControlRotation();
 
+	void AnimationStateMachine();
+	bool RunAnimation();
+	bool JumpAnimation();
+	bool AttackAnimation();
+	bool DeathAnimation();
+
+	void UpdateAnimation();
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -44,4 +53,24 @@ private:
 	AActor* ComponentOwner;
 
 	ECharacterState CharState = ECharacterState::Idle;
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "flipbooks")
+	UPaperFlipbook* AttackFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	UPaperFlipbook* RunFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	UPaperFlipbook* IdleFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	UPaperFlipbook* JumpFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	UPaperFlipbook* FallFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	UPaperFlipbook* DeathFlipbook;
+
 };
