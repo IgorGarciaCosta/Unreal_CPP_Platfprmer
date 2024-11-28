@@ -43,6 +43,7 @@ void UAnimationComponent::AnimationStateMachine()
 {
 	DeathAnimation();
 	AttackAnimation();
+	FallAnimation();
 	JumpAnimation();
 	RunAnimation();
 }
@@ -73,6 +74,16 @@ bool UAnimationComponent::JumpAnimation()
 				CharState = ECharacterState::Jump;
 				return true;
 			}
+		}
+	}
+
+	return false;
+}
+
+bool UAnimationComponent::FallAnimation()
+{
+	if (CurChar) {
+		if (UCharacterGameComponent* CharacterGameComponent = ComponentOwner->FindComponentByClass<UCharacterGameComponent>()) {
 			if (CurChar->GetCharacterMovement()->IsFalling()) {
 				CharState = ECharacterState::Fall;
 				return true;
@@ -112,47 +123,6 @@ void UAnimationComponent::UpdateAnimation()
 		}
 	}
 
-	/*switch (CharState)
-	{
-	case Idle:
-		if (IdleFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(IdleFlipbook);
-			CurChar->GetSprite()->SetLooping(true);
-		}
-		break;
-	case Run:
-		if (RunFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(RunFlipbook);
-			CurChar->GetSprite()->SetLooping(true);
-		}
-		break;
-	case Jump:
-		if (JumpFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(JumpFlipbook);
-			CurChar->GetSprite()->SetLooping(true);
-		}
-		break;
-	case Attack:
-		if (AttackFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(AttackFlipbook);
-			CurChar->GetSprite()->SetLooping(false);
-		}
-		break;
-	case Fall:
-		if (FallFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(FallFlipbook);
-			CurChar->GetSprite()->SetLooping(true);
-		}
-		break;
-	case Dead:
-		if (DeathFlipbook) {
-			CurChar->GetSprite()->SetFlipbook(DeathFlipbook);
-			CurChar->GetSprite()->SetLooping(false);
-		}
-		break;
-	default:
-		break;
-	}*/
 }
 
 

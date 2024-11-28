@@ -46,6 +46,7 @@ public:
 	void AnimationStateMachine();
 	bool RunAnimation();
 	bool JumpAnimation();
+	bool FallAnimation();
 	bool AttackAnimation();
 	bool DeathAnimation();
 
@@ -81,16 +82,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
 	UPaperFlipbook* RunFlipbook;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
-	UPaperFlipbook* IdleFlipbook;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
-	UPaperFlipbook* JumpFlipbook;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
-	UPaperFlipbook* FallFlipbook;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
-	UPaperFlipbook* DeathFlipbook;
 
 };
