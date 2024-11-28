@@ -39,5 +39,9 @@ void UCharacterGameComponent::MoveLeftRight(const FInputActionValue& Value)
 
 void UCharacterGameComponent::Jump()
 {
-    SetJumping(true);
+    if (CurChar) {
+        CurChar->Jump();
+        SetJumping(true);
+    }
+    
 }

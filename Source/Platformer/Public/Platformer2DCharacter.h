@@ -29,6 +29,8 @@ public:
 
 	virtual void Landed(const FHitResult& Hit) override;
 
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)override;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USpringArmComponent* SpringArmComp;
@@ -40,11 +42,13 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	class USceneComponent* SceneComp;
 
+	virtual void PawnClientRestart() override;
+
 #pragma region INPUT
 
 protected:
 	UPROPERTY(EditDefaultsOnly)
-	UInputAction* MoveAction;
+	UInputAction* MovementAction;
 
 	UPROPERTY(EditDefaultsOnly)
 	UInputAction* JumpAction;
