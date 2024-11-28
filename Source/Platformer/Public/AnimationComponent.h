@@ -18,6 +18,20 @@ enum ECharacterState {
 	Dead
 };
 
+USTRUCT(BlueprintType)
+struct FAnimationStruct {
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "structs")
+	TEnumAsByte<ECharacterState> AnimationState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "structs")
+	UPaperFlipbook* AnimationFlipbook;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "structs")
+	bool bIsLoopingAnimation;
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PLATFORMER_API UAnimationComponent : public UActorComponent
 {
@@ -52,9 +66,15 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Character")
 	AActor* ComponentOwner;
 
-	ECharacterState CharState = ECharacterState::Idle;
+	TEnumAsByte<ECharacterState> CharState = ECharacterState::Idle;
 
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
+	TArray<FAnimationStruct> AnimationStructs;
+
+	FAnimationStruct CurAnim;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "flipbooks")
 	UPaperFlipbook* AttackFlipbook;
 

@@ -97,7 +97,22 @@ void UAnimationComponent::UpdateAnimation()
 {
 	if (CurChar == nullptr) return;
 
-	switch (CharState)
+	if (!AnimationStructs.IsEmpty()) {
+		for (FAnimationStruct AnimElement : AnimationStructs) {
+			if (AnimElement.AnimationFlipbook && AnimElement.AnimationState == CharState) {
+				CurAnim = AnimElement;
+				CurChar->GetSprite()->SetFlipbook(AnimElement.AnimationFlipbook);
+				CurChar->GetSprite()->SetLooping(AnimElement.bIsLoopingAnimation);
+				
+				if(CurAnim.bIsLoopingAnimation){
+					CurChar->GetSprite()->Play();
+				}
+				break;
+			}
+		}
+	}
+
+	/*switch (CharState)
 	{
 	case Idle:
 		if (IdleFlipbook) {
@@ -137,7 +152,7 @@ void UAnimationComponent::UpdateAnimation()
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 
