@@ -33,9 +33,14 @@ public:
 
     bool bJumping = false;
 
+    bool bOnLadder = false;
+
     UPROPERTY(VisibleAnywhere)
     AActor* ComponentOwner;
 
     FORCEINLINE bool GetJumping() const { return bJumping; }
     FORCEINLINE void SetJumping(bool bJumpingVal) { bJumping = bJumpingVal; }
+    FORCEINLINE bool GetOnLadder() const { return bOnLadder; }
+    FORCEINLINE void SetOnLadder(bool bLadderVal) { bOnLadder = bLadderVal; }
+
 };
