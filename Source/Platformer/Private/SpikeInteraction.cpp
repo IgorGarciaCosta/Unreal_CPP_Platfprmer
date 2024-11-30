@@ -44,7 +44,7 @@ void ASpikeInteraction::BeginPlay()
 {
 	Super::BeginPlay();
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &ASpikeInteraction::BoxBeginOverlap);
-
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASpikeInteraction::ChangeSpikeStats, Duration, bLooping);
 }
 
 void ASpikeInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

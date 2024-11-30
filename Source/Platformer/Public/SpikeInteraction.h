@@ -41,7 +41,7 @@ protected:
 	float DamageAmount = 10;
 
 	UPROPERTY(EditAnywhere)
-	float Duration = 4;
+	float Duration = 1;
 
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* BoxComp;
