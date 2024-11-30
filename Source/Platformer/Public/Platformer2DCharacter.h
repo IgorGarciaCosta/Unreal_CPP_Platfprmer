@@ -52,6 +52,9 @@ protected:
 	UInputAction* MovementAction;
 
 	UPROPERTY(EditDefaultsOnly)
+	UInputAction* ClimbAction;
+
+	UPROPERTY(EditDefaultsOnly)
 	UInputAction* JumpAction;
 
 	UPROPERTY(EditDefaultsOnly)
@@ -63,6 +66,7 @@ protected:
 
 public:
 	void EnhancedMove(const FInputActionValue& Value);
+	void EnhancedClimb(const FInputActionValue& Value);
 	void EnhancedJump(const FInputActionValue& Value);
 #pragma endregion INPUT
 

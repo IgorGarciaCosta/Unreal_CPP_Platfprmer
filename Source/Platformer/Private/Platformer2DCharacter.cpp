@@ -54,6 +54,10 @@ void APlatformer2DCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 			PlayerEnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &APlatformer2DCharacter::EnhancedMove);
 		}
 
+		if (ClimbAction) {
+			PlayerEnhancedInputComponent->BindAction(ClimbAction, ETriggerEvent::Triggered, this, &APlatformer2DCharacter::EnhancedClimb);
+		}
+
 		if (JumpAction) {
 			PlayerEnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &APlatformer2DCharacter::EnhancedJump);
 			PlayerEnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &APlatformer2DCharacter::EnhancedJump);
@@ -83,6 +87,13 @@ void APlatformer2DCharacter::EnhancedMove(const FInputActionValue& Value)
 {
 	if (CharacterGameComponent) {
 		CharacterGameComponent->MoveLeftRight(Value);
+	}
+}
+
+void APlatformer2DCharacter::EnhancedClimb(const FInputActionValue& Value)
+{
+	if (CharacterGameComponent) {
+		CharacterGameComponent->MoveUpDown(Value);
 	}
 }
 

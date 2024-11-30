@@ -25,6 +25,7 @@ public:
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
     void MoveLeftRight(const FInputActionValue& Value);
+    void MoveUpDown(const FInputActionValue& Value);
     void Jump();
 
 public:

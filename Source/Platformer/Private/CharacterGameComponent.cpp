@@ -37,6 +37,14 @@ void UCharacterGameComponent::MoveLeftRight(const FInputActionValue& Value)
     }
 }
 
+void UCharacterGameComponent::MoveUpDown(const FInputActionValue& Value)
+{
+    if (CurChar && Value.GetMagnitude() != 0) {
+        FVector WorldDir = FVector(0, 0, 1);
+        CurChar->AddMovementInput(WorldDir, Value.GetMagnitude(), false);
+    }
+}
+
 void UCharacterGameComponent::Jump()
 {
     if (CurChar) {
