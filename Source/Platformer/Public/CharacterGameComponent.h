@@ -27,6 +27,7 @@ public:
     void MoveLeftRight(const FInputActionValue& Value);
     void MoveUpDown(const FInputActionValue& Value);
     void Jump();
+    void RespawnCharacter(FVector Location, bool bRelife);
 
 public:
     UPROPERTY(VisibleAnywhere)
@@ -36,6 +37,8 @@ public:
 
     bool bOnLadder = false;
 
+    FVector RespawnLocation;
+
     UPROPERTY(VisibleAnywhere)
     AActor* ComponentOwner;
 
@@ -43,5 +46,8 @@ public:
     FORCEINLINE void SetJumping(bool bJumpingVal) { bJumping = bJumpingVal; }
     FORCEINLINE bool GetOnLadder() const { return bOnLadder; }
     FORCEINLINE void SetOnLadder(bool bLadderVal) { bOnLadder = bLadderVal; }
+
+    FORCEINLINE FVector GetRespawnLocation() const { return RespawnLocation; }
+    FORCEINLINE void SetRespawnLocation(FVector RespawnLocationVal) { RespawnLocation = RespawnLocationVal; }
 
 };

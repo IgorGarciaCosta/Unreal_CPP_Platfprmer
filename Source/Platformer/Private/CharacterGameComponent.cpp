@@ -53,3 +53,10 @@ void UCharacterGameComponent::Jump()
     }
     
 }
+
+void UCharacterGameComponent::RespawnCharacter(FVector Location, bool bRelife)
+{
+    if (ComponentOwner) {
+        ComponentOwner->SetActorLocation(Location);
+    }
+}
