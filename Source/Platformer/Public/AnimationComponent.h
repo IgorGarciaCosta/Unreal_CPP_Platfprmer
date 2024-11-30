@@ -14,6 +14,8 @@ enum ECharacterState {
 	Run, 
 	Jump, 
 	Attack, 
+	Climb, 
+	IdleClimb,
 	Fall,
 	Dead
 };
@@ -47,6 +49,7 @@ public:
 	bool RunAnimation();
 	bool JumpAnimation();
 	bool FallAnimation();
+	bool ClimbAnimation();
 	bool AttackAnimation();
 	bool DeathAnimation();
 
