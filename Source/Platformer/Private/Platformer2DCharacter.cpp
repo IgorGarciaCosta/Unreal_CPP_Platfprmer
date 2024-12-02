@@ -22,6 +22,10 @@ APlatformer2DCharacter::APlatformer2DCharacter()
 	CharacterGameComponent = CreateDefaultSubobject<UCharacterGameComponent>(TEXT("CharacterGameComponent"));
 
 	AnimComp = CreateDefaultSubobject<UAnimationComponent>(TEXT("AnimComp"));
+
+	DeathComp = CreateDefaultSubobject<UDeathComponent>(TEXT("DeathComp"));
+	
+
 }
 
 void APlatformer2DCharacter::BeginPlay()

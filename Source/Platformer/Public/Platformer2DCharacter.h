@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "PaperFlipbookComponent.h"
 #include "PaperFlipbook.h"
+#include "DeathComponent.h"
 #include "AnimationComponent.h"
 #include "Platformer2DCharacter.generated.h"
 
@@ -76,4 +77,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	UAnimationComponent* AnimComp;
+	
+	UPROPERTY(VisibleAnywhere)
+	UDeathComponent* DeathComp;
 };
