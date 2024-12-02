@@ -18,6 +18,7 @@ ACheckpointInteraction::ACheckpointInteraction()
 
 void ACheckpointInteraction::BeginPlay()
 {
+	Super::BeginPlay();
 	BoxComp->OnComponentBeginOverlap.AddDynamic(this, &ACheckpointInteraction::BoxBeginOverlap);
 
 }

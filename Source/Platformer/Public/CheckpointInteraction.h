@@ -41,9 +41,9 @@ protected:
 
 
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 	class UPaperFlipbook* CheckpointOff;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 	class UPaperFlipbook* CheckpointOn;
 
 
