@@ -2,6 +2,7 @@
 
 #include "CharacterGameComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "PlayerStatWidget.h"
 #include "Platformer2DCharacter.h"
 #include "InputActionValue.h" // Ensure this is included
 
@@ -19,6 +20,15 @@ void UCharacterGameComponent::BeginPlay()
 
     ComponentOwner = GetOwner();
     CurChar = Cast<APlatformer2DCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+    if (ComponentOwner && CurChar) {
+        RespawnLocation = ComponentOwner->GetActorLocation();
+    }
+
+    if (PlayerStatWidgetClass) {
+        PlayerStatWidget = NewObject<UPlayerStatWidget>(this, PlayerStatWidgetClass);
+        PlayerStatWidget->AddToViewport();
+    }
 }
 
 // Called every frame
