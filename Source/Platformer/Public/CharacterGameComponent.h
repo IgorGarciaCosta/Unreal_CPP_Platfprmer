@@ -37,6 +37,14 @@ public:
 
     bool bOnLadder = false;
 
+    UPROPERTY(EditAnywhere)
+    TSubclassOf<class UPlayerStatWidget> PlayerStatWidgetClass;
+
+    UPROPERTY(EditAnywhere)
+    class UPlayerStatWidget* PlayerStatWidget;
+
+    FORCEINLINE UPlayerStatWidget* GetPlayerStatWidget()const { return PlayerStatWidget ;};
+
     FVector RespawnLocation;
 
     UPROPERTY(VisibleAnywhere)

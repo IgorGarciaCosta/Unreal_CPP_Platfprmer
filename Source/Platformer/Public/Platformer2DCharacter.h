@@ -83,5 +83,5 @@ private:
 	UDeathComponent* DeathComp;
 
 	UPROPERTY(VisibleAnywhere)
-	class UHealthCoponentComponent* HealthComponent;
+	class UHealthComponent* HealthComponent;
 };
