@@ -28,6 +28,7 @@ public:
     void MoveUpDown(const FInputActionValue& Value);
     void Jump();
     void RespawnCharacter(FVector Location, bool bRelife);
+    float IncrementGem();
 
 public:
     UPROPERTY(VisibleAnywhere)
@@ -46,6 +47,9 @@ public:
     FORCEINLINE UPlayerStatWidget* GetPlayerStatWidget()const { return PlayerStatWidget ;};
 
     FVector RespawnLocation;
+
+    UPROPERTY(EditAnywhere)
+    float Gem;
 
     UPROPERTY(VisibleAnywhere)
     AActor* ComponentOwner;

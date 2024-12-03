@@ -23,9 +23,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta =(BindWidget))
 	class UProgressBar* PlayerHealthBar;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* NumberOfGems;
+
 	UFUNCTION(BlueprintCallable) 
 	void UpdateHealthBar(float Health, float MaxHealth); 
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateGem(float Gem);
 
 private:
 	FTimerHandle TimerHandle;

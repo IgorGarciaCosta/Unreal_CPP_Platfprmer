@@ -70,3 +70,9 @@ void UCharacterGameComponent::RespawnCharacter(FVector Location, bool bRelife)
         ComponentOwner->SetActorLocation(Location);
     }
 }
+
+float UCharacterGameComponent::IncrementGem()
+{
+    Gem += 1;
+    return Gem;
+}

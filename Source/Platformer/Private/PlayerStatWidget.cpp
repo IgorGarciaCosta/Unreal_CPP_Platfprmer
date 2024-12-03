@@ -4,6 +4,8 @@
 #include <Kismet/GameplayStatics.h>
 #include "GameFramework/Character.h"
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
+
 #include <HealthComponent.h>
 
 void UPlayerStatWidget::NativeConstruct()
@@ -33,4 +35,9 @@ void UPlayerStatWidget::UpdateHealthBar(float Health, float MaxHealth)
 		const float Percent = Health / MaxHealth;
 		PlayerHealthBar->SetPercent(Percent);
 	}
+}
+
+void UPlayerStatWidget::UpdateGem(float Gem)
+{
+	NumberOfGems->SetText(FText::AsNumber(Gem));
 }
