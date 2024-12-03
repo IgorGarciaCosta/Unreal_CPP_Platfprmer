@@ -33,6 +33,7 @@ public:
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)override;
 
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USpringArmComponent* SpringArmComp;
@@ -80,4 +81,7 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UDeathComponent* DeathComp;
+
+	UPROPERTY(VisibleAnywhere)
+	class UHealthCoponentComponent* HealthComponent;
 };

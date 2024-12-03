@@ -6,6 +6,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "CharacterGameComponent.h"
+#include "HealthCoponentComponent.h"
 #include "Camera/CameraComponent.h"
 
 APlatformer2DCharacter::APlatformer2DCharacter()
@@ -25,6 +26,8 @@ APlatformer2DCharacter::APlatformer2DCharacter()
 
 	DeathComp = CreateDefaultSubobject<UDeathComponent>(TEXT("DeathComp"));
 	
+	HealthComponent = CreateDefaultSubobject<UHealthCoponentComponent>(TEXT("HealthComponent"));
+
 
 }
 
@@ -68,6 +71,20 @@ void APlatformer2DCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 		}
 	}
+}
+
+float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	if (HealthComponent) {
+		float UpdatedHealth = HealthComponent->TakeDamage(ActualDamage);
+	
+		if (UpdatedHealth == 0) {
+			UpdatedHealth = HealthComponent->GetHealth();
+		}
+	}
+
+	return ActualDamage;
 }
 
 //informs unreal we are adopting enhanced input
