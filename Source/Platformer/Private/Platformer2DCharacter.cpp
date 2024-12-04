@@ -81,6 +81,7 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 		float UpdatedHealth = HealthComponent->TakeDamage(ActualDamage);
 	
 		if (UpdatedHealth == 0) {
+			CharacterGameComponent->RespawnCharacter(CharacterGameComponent->GetRespawnLocation(), true);
 			UpdatedHealth = HealthComponent->GetHealth();
 		}
 

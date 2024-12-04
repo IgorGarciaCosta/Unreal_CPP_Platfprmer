@@ -5,6 +5,7 @@
 #include "PlayerStatWidget.h"
 #include "Platformer2DCharacter.h"
 #include "InputActionValue.h" // Ensure this is included
+#include <HealthComponent.h>
 
 // Sets default values
 UCharacterGameComponent::UCharacterGameComponent()
@@ -68,6 +69,16 @@ void UCharacterGameComponent::RespawnCharacter(FVector Location, bool bRelife)
 {
     if (ComponentOwner) {
         ComponentOwner->SetActorLocation(Location);
+
+        UDeathComponent* DeathComponent = ComponentOwner->FindComponentByClass<UDeathComponent>();
+        if (DeathComponent) {
+            DeathComponent->SetIsDead(true);
+        }
+
+        if (bRelife) {
+            UHealthComponent* HealthComponent = ComponentOwner->FindComponentByClass<UHealthComponent>();
+            HealthComponent->Revive();
+        }
     }
 }
 
