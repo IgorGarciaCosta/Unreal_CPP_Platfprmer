@@ -17,10 +17,10 @@ class PLATFORMER_API AEnemySimple : public AEnemyBase
 public:
 	AEnemySimple();
 
-private:
+
 	UPROPERTY(EditAnywhere)
 	bool bAlreadyHit = false;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bCanFollowChar = false;
 
 	virtual void BeginPlay()override;

@@ -12,6 +12,9 @@ UCharacterGameComponent::UCharacterGameComponent()
 {
     // Set this component to be initialized when the game starts, and to be ticked every frame.
     PrimaryComponentTick.bCanEverTick = true;
+
+    JumpSound = CreateDefaultSubobject<UAudioComponent>(TEXT("JumpSound"));
+    JumpSound->bAutoActivate = false; // Do not play sound on start
 }
 
 // Called when the game starts or when spawned
@@ -61,6 +64,11 @@ void UCharacterGameComponent::Jump()
     if (CurChar) {
         CurChar->Jump();
         SetJumping(true);
+        // Play the sound
+        if (JumpSound && JumpSoundBase)
+        {
+            UGameplayStatics::PlaySound2D(GetWorld(), JumpSoundBase, 1, 1, 0);
+        }
     }
     
 }

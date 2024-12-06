@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ParentActorInteraction.h"
+#include "Components/AudioComponent.h"
 #include "TrampolineInteraction.generated.h"
 
 /**
@@ -24,6 +25,12 @@ protected:
 
 
 public:
+	UPROPERTY(VisibleAnywhere)
+	class UAudioComponent* JumpSound;
+
+	// Sound to be played
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	class USoundBase* JumpSoundBase;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector LaunchVelocity = FVector(0, 0, 600);

@@ -52,7 +52,7 @@ void AEnemySimple::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AAc
 	Super::OnSphereOverlap( OverlappedComponent, OtherActor, OtherComp,  OtherBodyIndex,  bFromSweep,  SweepResult);
 	if (bCanFollowChar && OtherActor == PlayerChar) {
 		bFollowingChar = true;
-		Move();
+		
 	}
 }
 
@@ -62,6 +62,7 @@ void AEnemySimple::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, 
 
 	if (bCanFollowChar && OtherActor == PlayerChar) {
 		bFollowingChar = false;
+		Move();
 	}
 }
 

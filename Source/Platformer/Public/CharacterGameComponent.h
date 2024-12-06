@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/AudioComponent.h"
 #include "InputActionValue.h" // Ensure this is included for FInputActionValue
 #include "CharacterGameComponent.generated.h"
 
@@ -31,6 +32,13 @@ public:
     float IncrementGem();
 
 public:
+    UPROPERTY(VisibleAnywhere)
+    class UAudioComponent* JumpSound;
+
+    // Sound to be played
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+    class USoundBase* JumpSoundBase;
+
     UPROPERTY(VisibleAnywhere)
     class APlatformer2DCharacter* CurChar;
 

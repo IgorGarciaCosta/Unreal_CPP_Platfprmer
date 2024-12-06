@@ -4,12 +4,17 @@
 #include "GemInteraction.h"
 #include "PlayerStatWidget.h"
 #include <CharacterGameComponent.h>
+#include <Kismet/GameplayStatics.h>
 
 AGemInteraction::AGemInteraction()
 {
 
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
 	BoxComp->SetupAttachment(RootComponent);
+
+	GetItemSound = CreateDefaultSubobject<UAudioComponent>(TEXT("GetItemSound"));
+	GetItemSound->SetupAttachment(RootComponent);
+	GetItemSound->bAutoActivate = false; // Do not play sound on start
 
 }
 
@@ -30,6 +35,13 @@ void AGemInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActo
 		UCharacterGameComponent* CharacterGameComponent = PlayerChar->FindComponentByClass<UCharacterGameComponent>();
 		const float CurrentGem = CharacterGameComponent->IncrementGem();
 		CharacterGameComponent->GetPlayerStatWidget()->UpdateGem(CurrentGem);
+
+		// Play the sound
+		if (GetItemSound && GetItemSoundBase)
+		{
+			UGameplayStatics::PlaySound2D(GetWorld(), GetItemSoundBase, 1, 1, 0);
+		}
+
 		Destroy();
 	}
 }

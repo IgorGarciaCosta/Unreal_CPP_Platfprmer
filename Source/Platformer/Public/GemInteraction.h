@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "ParentActorInteraction.h"
 #include "Components/BoxComponent.h"
-
+#include "Components/AudioComponent.h"
 #include "GemInteraction.generated.h"
 
 /**
@@ -26,6 +26,14 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* BoxComp;
+
+	// Sound component to play sound when gem is collected
+	UPROPERTY(VisibleAnywhere)
+	class UAudioComponent* GetItemSound;
+
+	// Sound to be played
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	class USoundBase* GetItemSoundBase;
 
 	UFUNCTION(BlueprintCallable)
 	void BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

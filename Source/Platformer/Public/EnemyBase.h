@@ -78,7 +78,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	bool bMoveRight = false;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bFollowingChar = false;
 
 	UPROPERTY(EditAnywhere)
