@@ -26,6 +26,11 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	class USceneComponent* SceneComp;
 
+	FTimerHandle TurretTimerHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UPaperFlipbook* Explosion;
+
 	UPROPERTY(VisibleAnywhere)
 	class UPaperFlipbookComponent* PaperFlipbookComponent;
 
@@ -45,4 +50,9 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 	void SphereOverlapped(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	FORCEINLINE void DestroyProjectile() { Destroy(); };
+
+	void ExplodeProjectile();
 };

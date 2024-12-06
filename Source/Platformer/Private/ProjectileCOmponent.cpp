@@ -35,6 +35,7 @@ void AProjectileCOmponent::BeginPlay()
 	PlayerChar = Cast<APlatformer2DCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
 	SphereComp->OnComponentBeginOverlap.AddDynamic(this, &AProjectileCOmponent::SphereOverlapped);
+	GetWorld()->GetTimerManager().SetTimer(TurretTimerHandle, this, &AProjectileCOmponent::ExplodeProjectile, 1, false);
 
 }
 
@@ -51,8 +52,17 @@ void AProjectileCOmponent::SphereOverlapped(UPrimitiveComponent* OverlappedComp,
 
 	if (OtherActor == PlayerChar) {
 		PlayerChar->TakeDamage(DamageAmount, FDamageEvent(), nullptr, nullptr);
-
-		Destroy();
+		ExplodeProjectile();
 	}
+}
+
+void AProjectileCOmponent::ExplodeProjectile()
+{
+	ProjectileMovementComponent->StopMovementImmediately();
+	PaperFlipbookComponent->SetFlipbook(Explosion);
+	PaperFlipbookComponent->Play();
+	GetWorld()->GetTimerManager().SetTimer(TurretTimerHandle, this, &AProjectileCOmponent::DestroyProjectile, .6, false);
+
+	//PaperFlipbookComponent->OnFinishedPlaying().AddDynamic(this, &AProjectileCOmponent::DestroyProjectile);
 }
 
