@@ -166,8 +166,8 @@ void UAnimationComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (bIsGameOver)return;
 	UpdateControlRotation();
-
 	AnimationStateMachine();
 	UpdateAnimation();
 }

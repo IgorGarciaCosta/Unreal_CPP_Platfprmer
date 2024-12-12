@@ -6,12 +6,14 @@
 #include "ParentActorInteraction.h"
 #include "Components/BoxComponent.h"
 #include "Components/AudioComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "PaperFlipbookComponent.h"
 #include "FinishingGameInteraction.generated.h"
 
 /**
  * 
  */
+
 UCLASS()
 class PLATFORMER_API AFinishingGameInteraction : public AParentActorInteraction
 {
@@ -19,6 +21,10 @@ class PLATFORMER_API AFinishingGameInteraction : public AParentActorInteraction
 
 public:
 	AFinishingGameInteraction();
+	// Delegate to be broadcast when overlap begins
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnFinishedDelegate);
+	UPROPERTY(BlueprintAssignable, Category = "Event")
+	FOnFinishedDelegate OnFinished;
 protected:
 	virtual void BeginPlay();
 
@@ -44,6 +50,9 @@ protected:
 	void BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION(BlueprintCallable)
 	void BoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(BlueprintCallable)
+	void FinishLevelEvents();
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void MoveFlagUp();

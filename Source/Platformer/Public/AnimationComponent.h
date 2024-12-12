@@ -73,6 +73,8 @@ private:
 	TEnumAsByte<ECharacterState> CharState = ECharacterState::Idle;
 
 public:
+	bool bIsGameOver = false;
+	FORCEINLINE void SetCharState(ECharacterState NewState) { CharState = NewState; };
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "flipbooks")
 	TArray<FAnimationStruct> AnimationStructs;

@@ -32,9 +32,10 @@ void AFinishingGameInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedC
 	if (PlayerChar == nullptr) return;
 
 	if (OtherActor == PlayerChar) {
-		PaperFlipbookComponent->Play();
-		MoveFlagUp();
-
+		
+		// Broadcast the delegate
+		OnFinished.Broadcast();
+		FinishLevelEvents();
 		// Play the sound
 		if (EnterAreaSound && EnterAreaSoundBase)
 		{
@@ -47,4 +48,20 @@ void AFinishingGameInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedC
 
 void AFinishingGameInteraction::BoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+}
+
+void AFinishingGameInteraction::FinishLevelEvents()
+{
+	
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	if (PlayerController)
+	{
+		PlayerChar->DisableInput(PlayerController);
+		PlayerChar->AnimComp->bIsGameOver = true;
+		PlayerChar->AnimComp->SetCharState(ECharacterState::Run);
+		PlayerChar->AnimComp->UpdateAnimation();
+		PlayerChar->MoveToFinishGame();
+	}
+	PaperFlipbookComponent->Play();
+	MoveFlagUp();
 }

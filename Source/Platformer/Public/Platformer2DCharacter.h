@@ -72,7 +72,6 @@ public:
 	void EnhancedJump(const FInputActionValue& Value);
 #pragma endregion INPUT
 
-private:
 	UPROPERTY(VisibleAnywhere)
 	class UCharacterGameComponent* CharacterGameComponent;
 
@@ -84,4 +83,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	class UHealthComponent* HealthComponent;
+
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MoveToFinishGame();
 };
