@@ -15,6 +15,8 @@ AFallingInteraction::AFallingInteraction()
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 	ProjectileMovementComponent->ProjectileGravityScale = 0.f;
 	ProjectileMovementComponent->SetActive(false);
+
+	PaperSprite->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 }
 
 void AFallingInteraction::BeginPlay()
@@ -43,6 +45,7 @@ void AFallingInteraction::OnFall()
 
 		if (PaperSprite) {
 			PaperSprite->SetCollisionObjectType(ECollisionChannel::ECC_PhysicsBody);
+			PaperSprite->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFallingInteraction::OnReset, RespawnDelay, false);

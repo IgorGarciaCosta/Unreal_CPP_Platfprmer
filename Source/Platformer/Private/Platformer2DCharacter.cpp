@@ -77,20 +77,31 @@ void APlatformer2DCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	const float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	if (HealthComponent) {
+
+	if (HealthComponent)
+	{
 		float UpdatedHealth = HealthComponent->TakeDamage(ActualDamage);
-	
-		if (UpdatedHealth == 0) {
+
+		// Check if health reaches zero
+		if (UpdatedHealth == 0)
+		{
 			CharacterGameComponent->RespawnCharacter(CharacterGameComponent->GetRespawnLocation(), true);
 			UpdatedHealth = HealthComponent->GetHealth();
 		}
 
 		float MaxHealth = HealthComponent->GetDefaultHealth();
-		if (CharacterGameComponent) {
+		if (CharacterGameComponent)
+		{
 			CharacterGameComponent->GetPlayerStatWidget()->UpdateHealthBar(UpdatedHealth, MaxHealth);
 		}
 	}
 
+	// Knockback logic
+	//FVector KnockbackDirection = (GetActorLocation() - DamageCauser->GetActorLocation()).GetSafeNormal();
+	//FVector KnockbackForce = KnockbackDirection * 500.0f; // Adjust 500.0f as per your game balance needs
+
+	//LaunchCharacter(FVector(KnockbackForce.X, 0, KnockbackForce.Z), true, true);
+	LaunchCharacter(FVector(0, 0, 200), true, true);
 	
 
 	return ActualDamage;
