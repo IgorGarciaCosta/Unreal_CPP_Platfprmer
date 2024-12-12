@@ -34,7 +34,7 @@ public:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)override;
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
-protected:
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USpringArmComponent* SpringArmComp;
 
@@ -44,6 +44,11 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	class USceneComponent* SceneComp;
+
+	bool bCanBeDamaged = true;
+	FORCEINLINE void ReenableDamage() {GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("can take damage"));;bCanBeDamaged = true;
+	};
+	FTimerHandle DamageTimerHandle;
 
 	virtual void PawnClientRestart() override;
 

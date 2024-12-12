@@ -51,6 +51,7 @@ void AProjectileCOmponent::SphereOverlapped(UPrimitiveComponent* OverlappedComp,
 	if (PlayerChar == nullptr) return;
 
 	if (OtherActor == PlayerChar) {
+		if (!PlayerChar->bCanBeDamaged)return;
 		PlayerChar->TakeDamage(DamageAmount, FDamageEvent(), nullptr, nullptr);
 		ExplodeProjectile();
 	}
@@ -58,6 +59,7 @@ void AProjectileCOmponent::SphereOverlapped(UPrimitiveComponent* OverlappedComp,
 
 void AProjectileCOmponent::ExplodeProjectile()
 {
+
 	ProjectileMovementComponent->StopMovementImmediately();
 	PaperFlipbookComponent->SetFlipbook(Explosion);
 	PaperFlipbookComponent->Play();

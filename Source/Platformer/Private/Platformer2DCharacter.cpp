@@ -88,6 +88,13 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 			CharacterGameComponent->RespawnCharacter(CharacterGameComponent->GetRespawnLocation(), true);
 			UpdatedHealth = HealthComponent->GetHealth();
 		}
+		if (UpdatedHealth > 0) {
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("cannot take damage"));
+
+			bCanBeDamaged = false;
+			GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &APlatformer2DCharacter::ReenableDamage, 5, false);
+
+		}
 
 		float MaxHealth = HealthComponent->GetDefaultHealth();
 		if (CharacterGameComponent)

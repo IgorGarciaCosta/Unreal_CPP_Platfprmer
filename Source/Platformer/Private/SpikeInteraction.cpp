@@ -52,6 +52,7 @@ void ASpikeInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 	if (PlayerChar == nullptr) return;
 
 	if (OtherActor == PlayerChar) {
+		if (!PlayerChar->bCanBeDamaged)return;
 		PlayerChar->TakeDamage(DamageAmount, FDamageEvent(), nullptr, nullptr);
 	}
 }
