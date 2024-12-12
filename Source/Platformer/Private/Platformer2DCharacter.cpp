@@ -89,7 +89,7 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 			UpdatedHealth = HealthComponent->GetHealth();
 		}
 		if (UpdatedHealth > 0) {
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("cannot take damage"));
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("cannot take damage"));
 
 			bCanBeDamaged = false;
 			GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &APlatformer2DCharacter::ReenableDamage, 5, false);

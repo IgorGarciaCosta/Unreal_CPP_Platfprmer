@@ -46,7 +46,7 @@ public:
 	class USceneComponent* SceneComp;
 
 	bool bCanBeDamaged = true;
-	FORCEINLINE void ReenableDamage() {GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("can take damage"));;bCanBeDamaged = true;
+	FORCEINLINE void ReenableDamage() {bCanBeDamaged = true;
 	};
 	FTimerHandle DamageTimerHandle;
 
