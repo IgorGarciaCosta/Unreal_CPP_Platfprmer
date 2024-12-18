@@ -41,6 +41,7 @@ void AFallingInteraction::OnFall()
 {
 	if (ProjectileMovementComponent) {
 		ProjectileMovementComponent->ProjectileGravityScale = 1;
+		MakeTranslucid();
 		ProjectileMovementComponent->SetActive(true);
 
 		if (PaperSprite) {
@@ -56,6 +57,7 @@ void AFallingInteraction::OnReset()
 {
 	if (FallingInteractionClass == nullptr) return;
 
+	ResetOpacity();
 	if (bDestroy) {
 		Destroy();
 	}

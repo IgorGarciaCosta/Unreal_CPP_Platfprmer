@@ -26,6 +26,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* NumberOfGems;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UMaterialInstanceDynamic* DynamicMat;
+
 	UFUNCTION(BlueprintCallable) 
 	void UpdateHealthBar(float Health, float MaxHealth); 
 

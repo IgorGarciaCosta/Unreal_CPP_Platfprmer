@@ -32,8 +32,12 @@ void UPlayerStatWidget::InitHealthWidget()
 void UPlayerStatWidget::UpdateHealthBar(float Health, float MaxHealth)
 {
 	if (Health >= 0 && MaxHealth > 0) {
-		const float Percent = Health / MaxHealth;
-		PlayerHealthBar->SetPercent(Percent);
+		if (DynamicMat) {
+			const float Percent = Health / MaxHealth;
+			//PlayerHealthBar->SetPercent(Percent);
+			DynamicMat->SetScalarParameterValue(FName("Progress"), Percent);
+		}
+		//PlayerHealthBar->SetPercent(Percent);
 	}
 }
 

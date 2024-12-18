@@ -39,6 +39,7 @@ void ATurretInteraction::Tick(float DeltaTime)
 void ATurretInteraction::Fire()
 {
 	if (ProjectileClass) {
+		PlayFireSound();
 		AProjectileCOmponent* ProjectileParent = GetWorld()->SpawnActor<AProjectileCOmponent>(
 			ProjectileClass,
 			SceneComp->GetComponentLocation(),

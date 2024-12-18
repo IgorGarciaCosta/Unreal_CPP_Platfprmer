@@ -60,4 +60,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnReset();
 
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void MakeTranslucid();
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void ResetOpacity();
+
 };

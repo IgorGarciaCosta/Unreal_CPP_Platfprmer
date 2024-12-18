@@ -47,4 +47,7 @@ protected:
 	class UPaperFlipbook* CheckpointOn;
 
 
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void PlayCheckpointSound();
+
 };

@@ -68,7 +68,7 @@ void APlatformer2DCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 		if (JumpAction) {
 			PlayerEnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &APlatformer2DCharacter::EnhancedJump);
-			PlayerEnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &APlatformer2DCharacter::EnhancedJump);
+			//PlayerEnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &APlatformer2DCharacter::EnhancedJump);
 
 		}
 	}

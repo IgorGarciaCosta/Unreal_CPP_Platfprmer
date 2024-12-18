@@ -34,6 +34,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void PlayFireSound();
+
 private:
 	UPROPERTY(VisibleAnywhere)
 	class UPaperSpriteComponent* PaperSprite;
