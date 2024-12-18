@@ -32,7 +32,7 @@ protected:
 	
 	//delay to fall
 	UPROPERTY(EditAnywhere)
-	float DropDelay = 2.f;
+	float DropDelay = .7f;
 
 	UPROPERTY(EditAnywhere)
 	float RespawnDelay = 2.f;
