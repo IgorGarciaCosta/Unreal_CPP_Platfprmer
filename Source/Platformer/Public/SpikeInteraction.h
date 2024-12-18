@@ -32,7 +32,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere)
-	bool bSpikeUp = false;
+	bool bSpikeUp = true;
 
 	UPROPERTY(EditAnywhere)
 	bool bLooping = true;
@@ -56,5 +56,8 @@ protected:
 	UPaperSprite* SpriteSpikeDown;
 
 	FTimerHandle TimerHandle;
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void SetLooping(bool loopVal) { bLooping = loopVal; };
 	
 };
