@@ -3,6 +3,7 @@
 
 #include "FinishingGameInteraction.h"
 #include <CharacterGameComponent.h>
+#include "PlayerStatWidget.h"
 #include <Kismet/GameplayStatics.h>
 
 AFinishingGameInteraction::AFinishingGameInteraction()
@@ -41,7 +42,7 @@ void AFinishingGameInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedC
 		{
 			UGameplayStatics::PlaySound2D(GetWorld(), EnterAreaSoundBase, 1, 1, 0);
 		}
-
+		PlayerChar->CharacterGameComponent->GetPlayerStatWidget()->RunFinishEvents();
 		
 	}
 }

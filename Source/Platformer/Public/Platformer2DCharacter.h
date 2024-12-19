@@ -92,4 +92,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void MoveToFinishGame();
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void PlayDamageSound();
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void ExecuteDamageEffects();
 };

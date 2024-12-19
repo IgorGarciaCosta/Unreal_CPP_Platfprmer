@@ -35,6 +35,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateGem(float Gem);
 
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void RunFinishEvents();
+
 private:
 	FTimerHandle TimerHandle;
 	

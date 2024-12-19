@@ -92,7 +92,7 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("cannot take damage"));
 
 			bCanBeDamaged = false;
-			GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &APlatformer2DCharacter::ReenableDamage, 5, false);
+			GetWorld()->GetTimerManager().SetTimer(DamageTimerHandle, this, &APlatformer2DCharacter::ReenableDamage, 3, false);
 
 		}
 
@@ -108,8 +108,8 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 	//FVector KnockbackForce = KnockbackDirection * 500.0f; // Adjust 500.0f as per your game balance needs
 
 	//LaunchCharacter(FVector(KnockbackForce.X, 0, KnockbackForce.Z), true, true);
-	LaunchCharacter(FVector(0, 0, 200), true, true);
-	
+	LaunchCharacter(FVector(0, 0, 250), true, true);
+	PlayDamageSound();
 
 	return ActualDamage;
 }
