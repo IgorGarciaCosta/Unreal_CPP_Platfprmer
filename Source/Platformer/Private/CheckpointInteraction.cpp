@@ -34,7 +34,10 @@ void ACheckpointInteraction::BoxBeginOverlap(UPrimitiveComponent* OverlappedComp
 		
 			if (CheckpointOn) {
 				PaperFlipbookComponent->SetFlipbook(CheckpointOn);
-				PlayCheckpointSound();
+				if (Counter == 0) {
+					PlayCheckpointSound();
+					Counter++;
+				}
 			}
 		}
 	

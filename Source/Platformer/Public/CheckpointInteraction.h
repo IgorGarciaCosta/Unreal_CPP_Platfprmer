@@ -25,6 +25,7 @@ public:
 protected:
 	virtual void BeginPlay();
 
+	int32 Counter = 0;
 
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* BoxComp;
