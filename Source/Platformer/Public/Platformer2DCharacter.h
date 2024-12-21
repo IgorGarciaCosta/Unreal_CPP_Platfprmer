@@ -83,7 +83,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UAnimationComponent* AnimComp;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDeathComponent* DeathComp;
 
 	UPROPERTY(VisibleAnywhere)
@@ -98,4 +98,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void ExecuteDamageEffects();
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void DeathAnimationEvent();
 };

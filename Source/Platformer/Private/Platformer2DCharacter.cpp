@@ -85,6 +85,7 @@ float APlatformer2DCharacter::TakeDamage(float DamageAmount, FDamageEvent const&
 		// Check if health reaches zero
 		if (UpdatedHealth == 0)
 		{
+			DeathAnimationEvent();
 			CharacterGameComponent->RespawnCharacter(CharacterGameComponent->GetRespawnLocation(), true);
 			UpdatedHealth = HealthComponent->GetHealth();
 		}
